@@ -47,7 +47,7 @@ trait InteractsWithTenants
 
     protected function tenantArgument(): string
     {
-        $value = $this->argument('tenant');
+        $value = $this->input->hasArgument('tenant') ? $this->input->getArgument('tenant') : null;
 
         return is_string($value) ? $value : '';
     }
