@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-saml2` will be documented in this file.
 
+## v1.1.0 - 2026-10-17
+
+The migration now ships as a publishable stub, like the other packages, and is no longer run from the package (the `run_migrations` option is gone).
+
+New installs:
+
+```bash
+php artisan vendor:publish --tag=saml2-migrations
+php artisan migrate
+
+```
+Upgrading from 1.0: nothing to do — your `saml2_tenants` table is already there. Publishing and migrating is safe too: the migration keeps an existing table and only adds what's missing.
+
 ## v1.0.0 - 2026-10-07
 
 First public release of **laravel-saml2**: a multi-tenant SAML 2.0 Service Provider for Laravel 11, 12 and 13, built on onelogin/php-saml.
@@ -23,6 +36,7 @@ First public release of **laravel-saml2**: a multi-tenant SAML 2.0 Service Provi
 ```bash
 composer require jeffersongoncalves/laravel-saml2
 php artisan migrate
+
 
 ```
 See the [README](https://github.com/jeffersongoncalves/laravel-saml2#readme) for setup and IdP-specific notes (Entra ID, Okta, Google Workspace, Keycloak, ADFS).
