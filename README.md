@@ -38,15 +38,17 @@ each stored as a row in the database, on top of the battle-tested
 
 ```bash
 composer require jeffersongoncalves/laravel-saml2
+php artisan vendor:publish --tag=saml2-migrations
 php artisan migrate
 ```
 
-Optionally publish the config (and the migration if you want to customise it):
+Optionally publish the config:
 
 ```bash
 php artisan vendor:publish --tag=saml2-config
-php artisan vendor:publish --tag=saml2-migrations
 ```
+
+> **Upgrading from 1.0?** It ran its migration straight from the package (and had a `run_migrations` option, now gone). Publishing and migrating is safe: the migration leaves an existing `saml2_tenants` table in place and only adds what's missing.
 
 ## Quick start
 

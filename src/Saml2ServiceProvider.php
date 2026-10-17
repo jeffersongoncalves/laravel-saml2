@@ -35,10 +35,6 @@ class Saml2ServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        if (config('saml2.run_migrations', true)) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        }
-
         if (config('saml2.routes.enabled', true)) {
             $this->loadRoutesFrom(__DIR__.'/../routes/saml2.php');
 

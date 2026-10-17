@@ -26,7 +26,7 @@ it('upgrades an existing saml2_tenants table in place without losing rows', func
         'idp_login_url' => 'l', 'idp_logout_url' => 'o', 'idp_x509_cert' => 'c', 'metadata' => '[]',
     ]);
 
-    (require __DIR__.'/../../database/migrations/create_saml2_tenants_table.php')->up();
+    (require __DIR__.'/../../database/migrations/create_saml2_tenants_table.php.stub')->up();
 
     expect(Schema::hasColumns('saml2_tenants', ['idp_metadata_url', 'relay_state_url', 'name_id_format', 'settings']))->toBeTrue()
         ->and(DB::table('saml2_tenants')->value('name_id_format'))->toBe('persistent')
