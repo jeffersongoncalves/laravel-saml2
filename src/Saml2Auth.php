@@ -178,7 +178,10 @@ class Saml2Auth
 
         OneLoginUtils::setSelfProtocol($scheme);
         OneLoginUtils::setSelfHost($base['host'] ?? $request->getHost());
-        OneLoginUtils::setSelfPort($port);
+        // php-saml >= 4.4 drops a port only when it is the string '80' or '443' (strict check, any
+        // scheme): pass the scheme's default port as a string, keep any other port (e.g. https on 80) as int.
+        $default = $port === ($scheme === 'https' ? 443 : 80);
+        OneLoginUtils::setSelfPort($default ? (string) $port : $port); // @phpstan-ignore argument.type
     }
 
     /**
